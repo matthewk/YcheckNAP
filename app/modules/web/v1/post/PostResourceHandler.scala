@@ -8,9 +8,6 @@ import play.api.MarkerContext
 import scala.concurrent.{ExecutionContext, Future}
 import play.api.libs.json._
 
-/**
-  * DTO for displaying post information.
-  */
 case class PostResource(id: String, link: String, title: String, body: String)
 
 object PostResource {

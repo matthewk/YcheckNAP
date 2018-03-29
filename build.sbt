@@ -3,7 +3,6 @@ import sbt.Keys._
 lazy val GatlingTest = config("gatling") extend Test
 
 scalaVersion in ThisBuild := "2.12.4"
-
 crossScalaVersions := Seq("2.11.12", "2.12.4")
 
 def gatlingVersion(scalaBinVer: String): String = scalaBinVer match {
@@ -11,21 +10,23 @@ def gatlingVersion(scalaBinVer: String): String = scalaBinVer match {
   case "2.12" => "2.3.0"
 }
 
-libraryDependencies += guice
-libraryDependencies += "org.joda" % "joda-convert" % "1.9.2"
-libraryDependencies += "net.logstash.logback" % "logstash-logback-encoder" % "4.11"
-
-libraryDependencies += "com.netaporter" %% "scala-uri" % "0.4.16"
-libraryDependencies += "net.codingwell" %% "scala-guice" % "4.1.1"
 libraryDependencies ++= Seq(
+  guice,
+  "org.joda" % "joda-convert" % "1.9.2",
+  "net.logstash.logback" % "logstash-logback-encoder" % "4.11",
+  "io.lemonlabs" %% "scala-uri" % "1.1.1",
+  "net.codingwell" %% "scala-guice" % "4.1.1",
+
+  // play-monadic-actions ++ cats
   "io.kanaka" %% "play-monadic-actions" % "2.1.0",
   "io.kanaka" %% "play-monadic-actions-cats" % "2.1.0",
-  "org.typelevel" %% "cats-core" % "1.0.0-MF"
-)
+  "org.typelevel" %% "cats-core" % "1.0.0-MF",
 
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
-libraryDependencies += "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion(scalaBinaryVersion.value) % Test
-libraryDependencies += "io.gatling" % "gatling-test-framework" % gatlingVersion(scalaBinaryVersion.value) % Test
+  // test
+  "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test,
+  "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion(scalaBinaryVersion.value) % Test,
+  "io.gatling" % "gatling-test-framework" % gatlingVersion(scalaBinaryVersion.value) % Test
+)
 
 // The Play project itself
 lazy val root = (project in file("."))

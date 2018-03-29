@@ -1,6 +1,6 @@
 package domain
 
-import java.net.URI
+import io.lemonlabs.uri.Uri
 
 import com.google.inject.Inject
 import com.typesafe.config.{ConfigFactory, ConfigRenderOptions}
@@ -10,7 +10,7 @@ import play.api.libs.json.{JsString, JsValue, Writes}
 package object responses {
   case class Status(
                    artifactId: String,
-                   runbookUri: URI,
+                   runbookUri: Uri,
                    upDuration: String
                    )
 

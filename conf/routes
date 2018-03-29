@@ -1,7 +1,14 @@
-GET        /service/status                      controllers.HomeController.status
-GET        /service/health                      controllers.HomeController.healthcheck
-GET        /service/gtg                         controllers.HomeController.goodToGo
-GET        /service/alive                       controllers.HomeController.canary
+GET        /service/status                      controllers.ApiController.status
+POST       /service/status                      controllers.ApiController.statusPost
+
+GET        /service/health                      controllers.ApiController.healthcheck
+POST       /service/health                      controllers.ApiController.healthcheckPost
+
+GET        /service/gtg                         controllers.ApiController.goodToGo
+POST       /service/gtg                         controllers.ApiController.goodToGoPost
+
+GET        /service/alive                       controllers.ApiController.alive
+POST       /service/alive                       controllers.ApiController.alivePost
 
 
 

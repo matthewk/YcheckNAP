@@ -1,0 +1,7 @@
+GET        /service/status                      controllers.HomeController.status
+GET        /service/health                      controllers.HomeController.healthcheck
+GET        /service/gtg                         controllers.HomeController.goodToGo
+GET        /service/alive                       controllers.HomeController.canary
+
+
+

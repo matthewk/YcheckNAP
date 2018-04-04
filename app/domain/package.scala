@@ -1,9 +1,7 @@
 package domain
 
-import io.lemonlabs.uri.Uri
-import com.google.inject.Inject
 import com.typesafe.config.{ConfigFactory, ConfigRenderOptions}
-import play.api.Configuration
+import io.lemonlabs.uri.Uri
 import play.api.libs.json._
 
 import scala.util.Try
@@ -44,14 +42,14 @@ object responses {
     implicit val canaryFormat = Json.format[Canary]
   }
 
-  case class Config @Inject() (
-                   config: Configuration
-                   )
+  case class Config()
 
   object Config {
     implicit val g: Writes[Config] = new Writes[Config] {
-      override def writes(o: Config): JsValue =
-        JsString(ConfigFactory.load().root().render(ConfigRenderOptions.concise()))
+      override def writes(o: Config): JsValue = {
+        val cfg = ConfigFactory.parseResources("application.conf")
+        JsString(cfg.root().render(ConfigRenderOptions.concise()))
+      }
     }
   }
 }

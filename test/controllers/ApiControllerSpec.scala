@@ -147,13 +147,11 @@ class ApiControllerSpec extends PlaySpec with GuiceOneAppPerTest {
       assert(r.header.status == 500)
     }
 
-    "get the Config when GET /service/config in invoked" in {
+    "get 200 when GET /service/config in invoked" in {
       val request = FakeRequest(GET, "/service/config")
       val controller: Future[Result] = route(app, request).get
-
-      contentAsJson(controller) must be (
-        Json.parse("""{"status":"OK","message":"Empty Canary saved"}""")
-      )
+      val r = Await.result(controller, Duration.Inf)
+      assert(r.header.status == 200)
     }
 
   }

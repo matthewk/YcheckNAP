@@ -1,6 +1,6 @@
 package controllers
 
-import domain.responses.{Canary, GoodToGo}
+import domain.responses.{Canary, Config, GoodToGo}
 import javax.inject._
 import play.api.libs.json.{JsError, JsSuccess, Json}
 
@@ -141,11 +141,11 @@ class ApiController @Inject()
   def config = Action.async {
     _ => {
       for {
-        i <- state.getCanary
+        i <- state.getConfig
       } yield i
     }.map {
-      case Some(j) => Ok(Json.toJson(j))
-      case None => InternalServerError
+      case c: Config => Ok(Json.toJson(c))
+      case _ => InternalServerError
     }
   }
 

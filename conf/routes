@@ -10,5 +10,7 @@ POST       /service/gtg                         controllers.ApiController.goodTo
 GET        /service/alive                       controllers.ApiController.alive
 POST       /service/alive                       controllers.ApiController.alivePost
 
+GET        /service/config                      controllers.ApiController.config
+
 
 

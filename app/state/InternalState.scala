@@ -3,6 +3,7 @@ package state
 import domain.responses._
 import io.lemonlabs.uri.Uri
 import javax.inject._
+import play.api.Configuration
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global

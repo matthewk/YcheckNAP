@@ -17,6 +17,9 @@ libraryDependencies ++= Seq(
   "io.lemonlabs" %% "scala-uri" % "1.1.1",
   "net.codingwell" %% "scala-guice" % "4.1.1",
 
+  // circe 4 play
+  "com.dripower" %% "play-circe" % "2609.1",
+
   // play-monadic-actions ++ cats
   "io.kanaka" %% "play-monadic-actions" % "2.1.0",
   "io.kanaka" %% "play-monadic-actions-cats" % "2.1.0",

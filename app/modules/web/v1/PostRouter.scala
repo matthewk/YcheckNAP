@@ -14,7 +14,7 @@ class PostRouter @Inject()(controller: PostController) extends SimpleRouter {
   val prefix = "/api/v1/posts"
 
   def link(id: PostId): String = {
-    import com.netaporter.uri.dsl._
+    import io.lemonlabs.uri.dsl._
     val url = prefix / id.toString
     url.toString()
   }

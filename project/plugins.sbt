@@ -11,3 +11,13 @@ addSbtPlugin("io.gatling" % "gatling-sbt" % "2.2.2")
 
 // Scala formatting: "sbt scalafmt"
 addSbtPlugin("com.lucidchart" % "sbt-scalafmt" % "1.12")
+
+// docker plugin for creating docker images directly
+addSbtPlugin("se.marcuslonnberg" % "sbt-docker" % "1.5.0")
+
+// native packager
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.3")
+
+// docker-compose plugin for auto-generation of the docker-compose
+// file that will run up the demonstration app
+addSbtPlugin("com.tapad" % "sbt-docker-compose" % "1.0.34")

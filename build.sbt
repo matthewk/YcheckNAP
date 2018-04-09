@@ -20,11 +20,6 @@ libraryDependencies ++= Seq(
   // circe 4 play
   "com.dripower" %% "play-circe" % "2609.1",
 
-  // play-monadic-actions ++ cats
-  "io.kanaka" %% "play-monadic-actions" % "2.1.0",
-  "io.kanaka" %% "play-monadic-actions-cats" % "2.1.0",
-  "org.typelevel" %% "cats-core" % "1.0.0-MF",
-
   // test
   "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test,
   "io.gatling.highcharts" % "gatling-charts-highcharts" % gatlingVersion(scalaBinaryVersion.value) % Test,
@@ -33,12 +28,13 @@ libraryDependencies ++= Seq(
 
 // The Play project itself
 lazy val root = (project in file("."))
-  .enablePlugins(Common, PlayScala, GatlingPlugin)
+  .enablePlugins(Common, PlayScala, GatlingPlugin, JavaAppPackaging, DockerComposePlugin)
   .configs(GatlingTest)
   .settings(inConfig(GatlingTest)(Defaults.testSettings): _*)
   .settings(
-    name := """play-scala-rest-api-example""",
-    scalaSource in GatlingTest := baseDirectory.value / "/gatling/simulation"
+    name := """YcheckNAP""",
+    scalaSource in GatlingTest := baseDirectory.value / "/gatling/simulation",
+    dockerImageCreationTask := (publishLocal in Docker).value
   )
 
 // Documentation for this project:

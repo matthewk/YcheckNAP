@@ -2,11 +2,28 @@ package domain
 
 import com.typesafe.config.{ConfigFactory, ConfigRenderOptions}
 import io.lemonlabs.uri.Uri
+import javax.inject.{Inject, Singleton}
+import play.api.inject.RoutesProvider
 import play.api.libs.json._
 
+import scala.concurrent.Future
 import scala.util.Try
 
 object responses {
+
+  @Singleton
+   case class Routes @Inject()(router: RoutesProvider){
+    def getRoutes(caller: String): Future[Map[String, Seq[String]]] = Future.successful(router.get.documentation
+      .filterNot(k => k._2.equalsIgnoreCase(caller))
+      .groupBy(_._2)
+      .map{case (path, methods) => path -> methods.map(_._1)})
+  }
+
+  object Routes {
+//    implicit val routesFormat: Format[Routes] = Json.format[Routes]
+  }
+
+
   case class Status(
                    artifactId: String,
                    runbookUri: Uri,

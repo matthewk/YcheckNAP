@@ -3,10 +3,9 @@ package state
 import domain.responses._
 import io.lemonlabs.uri.Uri
 import javax.inject._
-import play.api.Configuration
 
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 @Singleton
 class InternalState {
@@ -28,5 +27,5 @@ class InternalState {
   def setCanary(newCanary: Option[Canary]) = canary = newCanary
   def getCanary = Future { canary }
 
-  def getConfig = Future { Config() }
+  def getConfig() = Future { Config() }
 }

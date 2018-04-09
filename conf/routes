@@ -12,5 +12,4 @@ POST       /service/alive                       controllers.ApiController.aliveP
 
 GET        /service/config                      controllers.ApiController.config
 
-
-
+GET        /                                    controllers.ApiController.index

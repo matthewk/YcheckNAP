@@ -1,21 +1,31 @@
 package controllers
 
-import domain.responses.{Canary, Config, GoodToGo}
+import domain.responses.{Canary, Config, GoodToGo, Routes}
 import javax.inject._
 import play.api.libs.json.{JsError, JsSuccess, Json}
-
-import scala.util.{Failure, Success}
-import state.InternalState
 import play.api.mvc._
+import state.InternalState
 
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.{Failure, Success}
 
 /**
   * A very small controller that renders the endpoints.
   */
 class ApiController @Inject()
-  (cc: ControllerComponents, state: InternalState)
+  (cc: ControllerComponents, state: InternalState, routes: Routes)
   (implicit ec: ExecutionContext) extends AbstractController(cc) {
+
+  def index = Action.async {
+    req => {
+      for {
+        i <- routes.getRoutes(req.path)
+      } yield i.toString()
+    }.transformWith {
+      case Success(i) => Future.successful(Ok(i))
+      case Failure(_) => Future.successful(InternalServerError)
+    }
+  }
 
   def status = Action.async {
     req => {

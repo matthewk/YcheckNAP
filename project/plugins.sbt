@@ -21,3 +21,5 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.3")
 // docker-compose plugin for auto-generation of the docker-compose
 // file that will run up the demonstration app
 addSbtPlugin("com.tapad" % "sbt-docker-compose" % "1.0.34")
+
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.5")

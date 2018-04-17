@@ -65,7 +65,7 @@ object responses {
     implicit val g: Writes[Config] = new Writes[Config] {
       override def writes(o: Config): JsValue = {
         val cfg = ConfigFactory.parseResources("application.conf")
-        JsString(cfg.root().render(ConfigRenderOptions.concise()))
+        Json.parse(cfg.root().render(ConfigRenderOptions.concise()))
       }
     }
   }
